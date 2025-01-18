@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="google-site-verification" content="vs4orMV7AL3natRl9FEX-4eOKv6z6Kfy47D-Zu4YNcc" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;0,800;0,900;1,200;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <title id="title">TODO-List :D</title>
+</head>
+
+<body class="body">
+    <div class="todo-app">
+        <div class="container todo-header">
+            <div class="line todo-header__line">
+                <input class="input todo-header__line-input" placeholder="Текст вашей задачи"></input>
+                <button class="button todo-header__line-button">+</button>
+            </div>
+            <div class="text todo-header__console">
+                <p class="text todo-header__console-text"></p>
+            </div>
+        </div>
+
+        <div class="container todo-list">
+
+        </div>
+
+        <div class="container todo-footer">
+            <div class="todo-footer__setting">
+                <button class="button todo-footer__setting-button">меню</button>
+            </div>
+            <div class="todo-footer__line">
+                <input type="text" class="input todo-footer__line-input">
+            </div>
+            <div class="todo-footer__information">
+                <p class="text todo-footer__information-text">0 из 0</p>
+            </div>
+            <div class="todo-footer__category">
+                <select class="select todo-footer__category-select">
+                    <option value="1">1</option>
+                </select>
+                <button class="button todo-footer__category-button">
+                    настройка категории
+                </button>
+            </div>
+            <div class="todo-footer__delete">
+                <button class="button todo-footer__delete-button" onclick="module.app.deleteCategory ()">x</button>
+            </div>
+            <div class="todo-footer__done">
+                <button class="button todo-footer__done-button" onclick="module.app.selectCategory()">готово</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup_setting">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Настройки</h2>
+            <p class="text popup__text">SHIFT + Z - открыть настройки</p>
+            <p class="text popup__text">SHIFT + X - открыть настройки переноса данных</p>
+            <p class="text popup__text">SHIFT + С - открыть настройки категории</p>
+            <p class="text popup__text">SHIFT + V - открыть настройки тем и дизайна</p>
+            <p class="text popup__text">SHIFT + R - многозадачность</p>
+            <p class="text popup__text">ENTER - создать заметку</p>
+            <p class="text popup__text">Поле ввода названия:</p>
+            <input type="text" class="input popup__input" placeholder="Название программы" id="program_title">
+            <p class="text popup__text">Поле ввода основной категории:</p>
+            <input type="text" class="input popup__input" placeholder="" id="program_main-category">
+            <p class="text popup__text">Поле ввода темы:</p>
+            <input type="text" class="input popup__input" placeholder="dark / light" id="program_theme">
+
+
+            <button class="button popup__button popup__element" onclick="module.app.changeSetting ()">сохранить</button>
+            <!-- <button class="button popup__button_clear popup__element">очистка</button> -->
+            <button class="button popup__button_default popup__element"
+                onclick="module.app.defaultChangeSetting ()">дефолт</button>
+            <div class="popup_setting__navigation">
+                <button class="button popup__button popup__button_navigation popup__button_data">Перенос
+                    данных</button>
+                <button class="button popup__button popup__button_navigation popup__button_theme">Дизайн и темы</button>
+                <button class="button popup__button popup__button_navigation popup__button_update">Обновление</button>
+                <button class="button popup__button popup__button_navigation popup__button_multitasks">Многозадачность</button>
+            </div>
+        </div>
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+    <div class="popup popup_task" id="">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Работа с задачей</h2>
+            <p class="text popup__text task_title_view">название задачи</p>
+
+            <p class="text popup__text">Поле ввода названия:</p>
+            <input type="text" class="input popup__input task_title" placeholder="Название задачи">
+            <p class="text popup__text">Поле ввода значения:</p>
+            <input type="text" class="input popup__input task_value" placeholder="Значение задачи">
+            <p class="text popup__text" style="display: none">Поле ввода айди (не меняйте):</p>
+            <input type="text" class="input popup__input task_index" placeholder="Айди задачи" style="display: none">
+
+
+            <div class="block"><input type="checkbox" class="text checkbox popup_task__checkbox_important"
+                    id="popup_task__checkbox_important" value="">
+                <label class="text label" for="popup_task__checkbox_important">Включить важность</label>
+            </div>
+            <div class="block"><input type="checkbox" class="text checkbox popup_task__checkbox_checked"
+                    id="popup_task__checkbox_checked" value="">
+                <label class="text label" for="popup_task__checkbox_checked">Включить задачу как помеченную</label>
+            </div>
+
+            <button class="button popup__button popup__element" onclick="module.app.changeTask()">сохранить</button>
+        </div>
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+    <div class="popup popup_category">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Работа с категорией</h2>
+            <p class="text popup__text category_title_view">навзвание категории</p>
+
+            <p class="text popup__text">Поле ввода названия:</p>
+            <input type="text" class="input popup__input category_title" placeholder="Название категории">
+
+            <button class="button popup__button popup__element" onclick="module.app.changeCategory()">сохранить</button>
+            <button class="button popup__button popup__element popup__element_reset"
+                onclick="module.app.clearCategoryContent ()">очистить
+                все данные</button>
+        </div>
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+    <div class="popup popup_theme">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Дизайн и темы</h2>
+            <p class="text popup__text category_title_view">Работа с дизайном программы</p>
+
+            <p class="text popup__text">Временно не работает</p>
+
+            <p class="text popup__text">Айди темы (англ.)*</p>
+            <input type="text" class="input popup__input" id="theme_id" placeholder="Айди темы">
+
+            <p class="text popup__text">Название темы</p>
+            <input type="text" class="input popup__input" id="theme_title" placeholder="Название темы">
+
+            <p class="text popup__text">Описание темы</p>
+            <input type="text" class="input popup__input" id="theme_description" placeholder="Описание темы">
+
+            <p class="text popup__text">Автор темы</p>
+            <input type="text" class="input popup__input" id="theme_author" placeholder="Автор темы">
+
+            <p class="text popup__text">Версия темы</p>
+            <input type="text" class="input popup__input" id="theme_version" placeholder="Версия темы">
+
+            <p class="text popup__text">Стиль темы[css]*</p>
+            <textarea class="textarea text popup_data__textarea popup_data__textarea_input" id="theme_style"></textarea>
+
+            <button class="button popup__button popup__element" onclick="module.theme.createTheme()">сохранить</button>
+            <button class="button popup__button popup__element" onclick="module.theme.deleteTheme()">удалить</button>
+
+            <p class="text popup__text" id="theme-list">
+
+            </p>
+
+        </div>
+
+        <!-- <button class="button popup__button popup__element" onclick="module.app.changeCategory()">сохранить</button> -->
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+    </div>
+
+    <div class="popup popup_data">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Работа с данными</h2>
+            <p class="text popup__text">Интеграция данных (перенос данных)</p>
+
+            <p class="text popup__text">Поле вывода:</p>
+            <textarea class="textarea text popup_data__textarea popup_data__textarea_input" id="outputData"></textarea>
+            <p class="text popup__text">Поле ввода:</p>
+            <textarea class="textarea text popup_data__textarea popup_data__textarea_output" id="inputData"></textarea>
+            <input type="checkbox" class="text checkbox popup_data__checkbox_stopcran"
+                id="popup_data__checkbox_stopcran" value="">
+            <label class="text label" for="popup_data__checkbox_stopcran">Разрешение на снятие ограничений</label>
+
+
+            <div class="block">
+                <button class="button popup__button popup__button_getter popup__element">получить данные</button>
+                <button class="button popup__button popup__button_setter popup__element">принять новые
+                    данные</button>
+                <button class="button popup__button popup__button_setter popup__element" onclick="navigator.clipboard.writeText(document.querySelector('#outputData').value);">скопировать
+                    данные</button>
+            </div>
+
+            <h2 class="heading popup__heading">Как это работает?</h2>
+            <p class="text popup__text">
+                Данный попап разделён на поля: "Вывод" - здесь, при нажатии на кнопку: "Получить
+                данные" происходит вывод ваших данных, для их переноса. Скопируйте текст отсюда и вставьте его в
+                нужную
+                вам программу TO-DO List by Slavik :D, в поле: "Ввод" - отсюда, при нажатии на кнопку: "Принять
+                новые
+                данные", будут взяты данные для переноса.
+            </p>
+            <p class="text popup__text">
+                Возможно вы хотите перенести данные в более новую/старую версию программы, учтите они могут
+                вызвать проблемы с работой приложения, по-этому строку ваших данных советую сохранить где-нибудь
+                отдельно, на случай поломки программы. Используйте кнопку: "Разрешение на снятие ограничений",
+                тогда версия программы при установке учитываться не будет.
+            </p>
+            <button class="button popup__button popup__button_clearData popup__element popup__element_red">Стереть все данные (прямо все данные программы!)</button>
+        </div>
+        
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+
+    <!-- попап: обновление -->
+    <div class="popup popup_update">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">обновление</h2>
+            <!-- <p class="text popup__text">Выпуск 11</p> -->
+
+            <div class="articles" id="articles">
+
+            </div>
+        </div>
+        
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+
+
+
+
+    <!-- попап: многозадачность -->
+    <div class="popup popup_multitasks">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">многозадачность</h2>
+            <textarea class="popup_textarea multitasks_input" id="multitasks_input"></textarea>
+            <button class="button popup__button" id="multitasks_button">Создать задачи</button>
+        </div>
+        
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
+    <style id="style"></style>
+    <script src="main.js"></script>
+</body>
+
+</html>

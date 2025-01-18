@@ -1,0 +1,72 @@
+Popuper by Slavik :)
+V3
+
+Popuper - набор небольших классов для работы с графическими элементами.
+
+Она делится на классы:
+Popup - для работы с отдельными элементами
+Popuper - для работы с множеством элементов
+
+Инициализация:
+let <...> = new Popup(<Айди элемента>, <display/class>, <опции>);
+* <Айди элемента> - айди элемента в HTML для его привязки.
+* <display/class>:
+  * display - для скрытия/открытия элемента использует css-свойство: display
+  * class - для скрытия/открытия элемента использует html-свойство: class
+
+При выборе display, можно выбрать свойство display которое будет использовано:
+* inline
+* inline-block
+* block
+* grid
+* Если пункт <опции> не заполнен, будет выбран: block;
+
+Пример: let firstPopup = new Popup("popup_first", "display", "grid");
+
+После Инициализация, открываются методы:
+* show () - показать/открыть
+* hide () - скрыть
+* toggle () - заменить противоположным (hide --> show, show --> hide);
+
+Для работы с несколькими используем класс Popuper.
+Инициализация, без аргументов, пример: 
+   let popuper = new Popuper ();
+Для подключения элементов: popuper.reg ([<айди>, <айди 2>, <айди 3>], <class/display>, <опции>);
+Пример: popuper.reg (["popup_first", "popup_second", "popup_third"], "display", "inline-block")
+
+Свойства:
+   popuper.hideAll (); - скроет все элементы
+   popuper.toggleAll (); - переключит все элементы в противоположное состояние
+   popuper.showAll (); - покажет все элементы
+   popuper.localShowForID ("popup_first"); - откроет только айди-аргумента, здесь он откроет: popup_first
+
+Пример кода:
+let firstPopup = new Popup("popup_first", "class");
+let secondPopup = new Popup("popup_second", "display");
+let thirdPopup = new Popup("popup_third", "error"); // два исключения
+
+popuper.reg(["popup_first", "popup_second", "popup_third"], "display");
+popuper.hideAll();
+popuper.showAll();
+console.log (popuper.find());
+popuper.toggleAll();
+popuper.localShowForID("popup_third");
+
+let popuper = new Popuper ();
+let popuper2 = new Popuper ();
+
+popuper.reg (["popup_first", "popup_second", "popup_third"], "display", "inline-block")
+popuper.hideAll ();
+popuper.toggleAll ();
+popuper.showAll ();
+popuper.localShowForID ("popup_first");
+
+popuper2.reg (["popup_first", "popup_second", "popup_third"], "display")
+let secondPopup = new Popup("popup_second", "display", "grid");
+secondPopup.hide()
+
+Пример кода (для каталога магазинов):
+let shopList = new Popuper ();
+shopList.reg(["shop_lololowka", "shop_ebay", "shop_animals"], "display");
+// shopList.hide ('shop_lololowka');
+// shopList.toggle ('shop_lololowka');
