@@ -72,7 +72,7 @@
             <p class="text popup__text">Поле ввода основной категории:</p>
             <input type="text" class="input popup__input" placeholder="" id="program_main-category">
             <p class="text popup__text">Поле ввода темы:</p>
-            <input type="text" class="input popup__input" placeholder="dark / light" id="program_theme">
+            <input type="text" class="input popup__input" placeholder="dark / light / miniLight" id="program_theme">
 
 
             <button class="button popup__button popup__element" onclick="module.app.changeSetting ()">сохранить</button>
@@ -98,7 +98,10 @@
             <p class="text popup__text">Поле ввода названия:</p>
             <input type="text" class="input popup__input task_title" placeholder="Название задачи">
             <p class="text popup__text">Поле ввода значения:</p>
-            <input type="text" class="input popup__input task_value" placeholder="Значение задачи">
+            <input type="text" class="input popup__input task_value" placeholder="Значение задачи (%)">
+            <p class="text popup__text">Поле ввода значения:</p>
+            <input type="text" class="input popup__input popup__input_blue task_amount_1" placeholder="Нужно выполнить (штук)">
+            <input type="text" class="input popup__input popup__input_blue task_amount_2" placeholder="Выполнил (штук)">
             <p class="text popup__text" style="display: none">Поле ввода айди (не меняйте):</p>
             <input type="text" class="input popup__input task_index" placeholder="Айди задачи" style="display: none">
 
@@ -107,9 +110,11 @@
                     id="popup_task__checkbox_important" value="">
                 <label class="text label" for="popup_task__checkbox_important">Включить важность</label>
             </div>
+            
             <div class="block"><input type="checkbox" class="text checkbox popup_task__checkbox_checked"
                     id="popup_task__checkbox_checked" value="">
                 <label class="text label" for="popup_task__checkbox_checked">Включить задачу как помеченную</label>
+            <p class="text popup__text" id="popup_status_task">Статус задачи: <span class='text_red'>нет изменений</span></p>
             </div>
 
             <button class="button popup__button popup__element" onclick="module.app.changeTask()">сохранить</button>
@@ -246,7 +251,24 @@
     </div>
 
     <style id="style"></style>
+
+    <!-- Настройки программы -->
+    <script src="modules/program.js"></script>
+    <!-- База данных -->
+    <script src="modules/db.js"></script>
+    <!-- Обновления -->
+    <script src="modules/updater.js"></script>
+    <!-- Работа с выводом html через js -->
+    <script src="modules/view.js"></script>
+    <!-- Обработка данных -->
+    <script src="modules/scheme.js"></script>
+    <!-- Модуль обработки данных -->
+    <script src="modules/module.js"></script>
+    <!-- Функции облегчения разработки -->
+    <script src="modules/function.js"></script>
+    <!-- События и стартовые функции -->
     <script src="main.js"></script>
+
 </body>
 
 </html>
