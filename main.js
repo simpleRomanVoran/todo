@@ -247,7 +247,7 @@ function login() {
                 // Получение данных при авторизации
                 program = data.program;
                 scheme.scheme_category = data.scheme_category;
-                themeList = data.themeList;
+                module.theme.themeList = data.themeList;
                 localStorage.setItem("program", data.program);
                 localStorage.setItem("scheme_category", data.scheme_category);
                 localStorage.setItem("themeList", data.themeList);
@@ -272,7 +272,7 @@ function loadUserData() {
 
             program = data.program;
             scheme.scheme_category = data.scheme_category;
-            themeList = data.themeList;
+            module.theme.themeList = data.themeList;
             localStorage.setItem("program", data.program);
             localStorage.setItem("scheme_category", data.scheme_category);
             localStorage.setItem("themeList", data.themeList);
@@ -287,7 +287,7 @@ function updateData() {
         const data = JSON.stringify(document.getElementById('dataField').value);
     }
     else {
-        const data = {program, "scheme_category": scheme.scheme_category, themeList}
+        const data = {program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList}
     }
     // const data = JSON.stringify(document.getElementById('dataField').value);
 
