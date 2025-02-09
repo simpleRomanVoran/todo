@@ -224,7 +224,7 @@ function register() {
         body: JSON.stringify({ username, password, com })
     })
         .then(res => res.json())
-        .then(data => alert(data.message), updateData()) // Обновление данных (при регистрации)
+        .then(data => alert(data.message)) // updateData() Обновление данных нет, так как нет токена (при регистрации)
         .catch(console.error);
 }
 
