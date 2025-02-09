@@ -282,13 +282,18 @@ function loadUserData() {
         .catch(console.error);
 }
 
-function updateData() {
+function getDataForSync () {
     if (document.getElementById('dataField').value) {
-        const data = JSON.stringify(document.getElementById('dataField').value);
+        data = JSON.stringify(document.getElementById('dataField').value);
+        return data;
     }
     else {
-        const data = {program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList}
+        data = {program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList}
+        return data;
     }
+}
+
+function updateData() {
     // const data = JSON.stringify(document.getElementById('dataField').value);
 
     fetch(`${API_URL}/user/data`, {
@@ -297,7 +302,7 @@ function updateData() {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify({ data: JSON.parse(data) })
+        body: JSON.stringify({ data: JSON.parse(getDataForSync ()) })
     })
         .then(res => res.json())
         .then(data => alert(data.message))
