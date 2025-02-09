@@ -211,7 +211,6 @@ startProgram();
 
 // SYNC
 const API_URL = 'https://api.slavik00.ru/api';
-let token = localStorage.getItem('token'); // Берёт токен если есть
 
 function register() {
     const username = document.getElementById('regUsername').value;
