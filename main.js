@@ -274,17 +274,19 @@ function loadUserData() {
     })
     .then(res => res.json())
     .then(data => {
-        document.getElementById('dataField').value = data.data;
+        document.getElementById('dataField').value = data;
         document.getElementById('auth').style.display = 'none';
         document.getElementById('userData').style.display = 'block';
 
-        program = data.data.program;
-        scheme.scheme_category = data.data.scheme_category;
-        module.theme.themeList = data.data.themeList;
+        console.log("Ответ сервера:", data);
 
-        localStorage.setItem("program", data.data.program);
-        localStorage.setItem("scheme_category", data.data.scheme_category);
-        localStorage.setItem("themeList", JSON.stringify(data.data.themeList)); // Фикс JSON
+        program = data.program;
+        scheme.scheme_category = data.scheme_category;
+        module.theme.themeList = data.themeList;
+
+        localStorage.setItem("program", data.program);
+        localStorage.setItem("scheme_category", data.scheme_category);
+        localStorage.setItem("themeList", JSON.stringify(data.themeList)); // Фикс JSON
     })
     .catch(console.error);
 }
