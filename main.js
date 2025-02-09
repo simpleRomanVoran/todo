@@ -245,12 +245,12 @@ function login() {
                 loadUserData();
 
                 // Получение данных при авторизации
-                program = data.program;
-                scheme.scheme_category = data.scheme_category;
-                module.theme.themeList = data.themeList;
-                localStorage.setItem("program", data.program);
-                localStorage.setItem("scheme_category", data.scheme_category);
-                localStorage.setItem("themeList", data.themeList);
+                program = data.data.program;
+                scheme.scheme_category = data.data.scheme_category;
+                module.theme.themeList = data.data.themeList;
+                localStorage.setItem("program", data.data.program);
+                localStorage.setItem("scheme_category", data.data.scheme_category);
+                localStorage.setItem("themeList", data.data.themeList);
             } else {
                 alert(data.message);
             }
@@ -270,12 +270,12 @@ function loadUserData() {
             document.getElementById('auth').style.display = 'none';
             document.getElementById('userData').style.display = 'block';
 
-            program = data.program;
-            scheme.scheme_category = data.scheme_category;
-            module.theme.themeList = data.themeList;
-            localStorage.setItem("program", data.program);
-            localStorage.setItem("scheme_category", data.scheme_category);
-            localStorage.setItem("themeList", data.themeList);
+            program = data.data.program;
+            scheme.scheme_category = data.data.scheme_category;
+            module.theme.themeList = data.data.themeList;
+            localStorage.setItem("program", data.data.program);
+            localStorage.setItem("scheme_category", data.data.scheme_category);
+            localStorage.setItem("themeList", data.data.themeList);
             // document.getElementById('dataField').value = data.data;
 
         })
