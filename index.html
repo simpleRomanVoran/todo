@@ -250,6 +250,34 @@
         <button class="button popup__button_exit">ВЫЙТИ</button>
     </div>
 
+    <div class="popup popup_sync" id="">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">Аккаунт и синхронизация</h2>
+            <p class="text popup__text">Будьте крайне осторожны не храните в системе свои реальные пароли и важные данные, так как сейчас сложно гарантировать их сохранность.</p>
+
+            <div class="auth">
+                <h2 class="heading popup__heading">Регистрация</h2>
+                <input class="input popup__input" type="text" class="" id="regUsername" placeholder="Логин">
+                <input class="input popup__input" type="text" id="regCom" placeholder="Способ связи, если аккаунт нужно будет: изменить/удалить и т.п. (почта, телеграмм...)">
+                <input class="input popup__input" type="password" id="regPassword" placeholder="Пароль">
+                <button class="button popup__button popup__element" onclick="register()">Зарегистрироваться</button>
+
+                <h2 class="heading popup__heading">Авторизация</h2>
+                <input class="input popup__input" type="text" id="loginUsername" placeholder="Логин">
+                <input class="input popup__input" type="password" id="loginPassword" placeholder="Пароль">
+                <button class="button popup__button popup__element" onclick="login()">Войти</button>
+            </div>
+
+            <div id="userData">
+                <h2 class="heading popup__heading">Синхронизация данных</h2>
+                <textarea class="textarea text popup_data__textarea popup_data__textarea_input" id="dataField"></textarea>
+                <button class="button popup__button popup__element" onclick="updateData()">Сохранить</button>
+                <button class="button popup__button popup__element" onclick="logout()">Выйти</button>
+            </div>
+        </div>
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
     <style id="style"></style>
 
     <!-- Настройки программы -->

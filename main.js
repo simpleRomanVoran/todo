@@ -197,3 +197,109 @@ document.addEventListener ("click", function (e) {
 })
 
 startProgram();
+
+// SYNC
+const API_URL = 'https://api.slavik00.ru/api';
+let token = localStorage.getItem('token'); // Берёт токен если есть
+
+function register() {
+    const username = document.getElementById('regUsername').value;
+    const com = document.getElementById('regCom').value; // МЕТОД СВЯЗИ
+    const password = document.getElementById('regPassword').value;
+
+    fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, com })
+    })
+        .then(res => res.json())
+        .then(data => alert(data.message), updateData()) // Обновление данных (при регистрации)
+        .catch(console.error);
+}
+
+function login() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+
+    fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                token = data.token;
+                loadUserData();
+
+                // Получение данных при авторизации
+                program = data.program;
+                scheme_category = data.scheme_category;
+                themeList = data.themeList;
+                localStorage.setItem("program", data.program);
+                localStorage.setItem("scheme_category", scheme_category);
+                localStorage.setItem("themeList", themeList);
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(console.error);
+}
+
+function loadUserData() {
+    if (!token) return;
+
+    fetch(`${API_URL}/user/data`, {
+        headers: { 'Authorization': token }
+    })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('dataField').value = data.data;
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('userData').style.display = 'block';
+
+            program = data.program;
+            scheme_category = data.scheme_category;
+            themeList = data.themeList;
+            localStorage.setItem("program", data.program);
+            localStorage.setItem("scheme_category", scheme_category);
+            localStorage.setItem("themeList", themeList);
+            // document.getElementById('dataField').value = data.data;
+
+        })
+        .catch(console.error);
+}
+
+function updateData() {
+    if (document.getElementById('dataField').value) {
+        const data = JSON.stringify(document.getElementById('dataField').value);
+    }
+    else {
+        const data = {program, scheme_category, themeList}
+    }
+    // const data = JSON.stringify(document.getElementById('dataField').value);
+
+    fetch(`${API_URL}/user/data`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({ data: JSON.parse(data) })
+    })
+        .then(res => res.json())
+        .then(data => alert(data.message))
+        .catch(console.error);
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    token = null;
+    document.getElementById('auth').style.display = 'block';
+    document.getElementById('userData').style.display = 'none';
+}
+
+if (token) {
+    loadUserData();
+}
