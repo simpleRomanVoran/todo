@@ -303,7 +303,7 @@ function updateData() {
         body: JSON.stringify({ data: JSON.parse(getDataForSync ()) })
     })
         .then(res => res.json())
-        .then(data => alert(data.message))
+        .then(data => alert(data.message, getDataForSync ()))
         .catch(console.error);
 }
 
