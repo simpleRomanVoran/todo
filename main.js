@@ -246,11 +246,11 @@ function login() {
 
                 // Получение данных при авторизации
                 program = data.program;
-                scheme_category = data.scheme_category;
+                scheme.scheme_category = data.scheme_category;
                 themeList = data.themeList;
                 localStorage.setItem("program", data.program);
-                localStorage.setItem("scheme_category", scheme_category);
-                localStorage.setItem("themeList", themeList);
+                localStorage.setItem("scheme_category", data.scheme_category);
+                localStorage.setItem("themeList", data.themeList);
             } else {
                 alert(data.message);
             }
@@ -271,11 +271,11 @@ function loadUserData() {
             document.getElementById('userData').style.display = 'block';
 
             program = data.program;
-            scheme_category = data.scheme_category;
+            scheme.scheme_category = data.scheme_category;
             themeList = data.themeList;
             localStorage.setItem("program", data.program);
-            localStorage.setItem("scheme_category", scheme_category);
-            localStorage.setItem("themeList", themeList);
+            localStorage.setItem("scheme_category", data.scheme_category);
+            localStorage.setItem("themeList", data.themeList);
             // document.getElementById('dataField').value = data.data;
 
         })
@@ -287,7 +287,7 @@ function updateData() {
         const data = JSON.stringify(document.getElementById('dataField').value);
     }
     else {
-        const data = {program, scheme_category, themeList}
+        const data = {program, "scheme_category": scheme.scheme_category, themeList}
     }
     // const data = JSON.stringify(document.getElementById('dataField').value);
 
