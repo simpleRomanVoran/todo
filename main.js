@@ -227,6 +227,7 @@ function register() {
         .catch(console.error);
 }
 
+// Обновленный login()
 function login() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
@@ -236,60 +237,65 @@ function login() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     })
-        .then(res => res.json())
-        .then(data => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                token = data.token;
-                loadUserData();
+    .then(res => res.json())
+    .then(data => {
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+            console.log("Ответ сервера:", data);
+            
+            token = data.token;
+            loadUserData();
 
-                // Получение данных при авторизации
-                program = data.data.program;
-                scheme.scheme_category = data.data.scheme_category;
-                module.theme.themeList = data.data.themeList;
-                localStorage.setItem("program", data.data.program);
-                localStorage.setItem("scheme_category", data.data.scheme_category);
-                localStorage.setItem("themeList", data.data.themeList);
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(console.error);
+            // Сохраняем данные правильно
+            program = data.data.program;
+            scheme.scheme_category = data.data.scheme_category;
+            module.theme.themeList = data.data.themeList;
+
+            localStorage.setItem("program", data.data.program);
+            localStorage.setItem("scheme_category", data.data.scheme_category);
+            localStorage.setItem("themeList", JSON.stringify(data.data.themeList)); // Фикс JSON
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(console.error);
 }
 
+// Фикс getDataForSync()
+function getDataForSync() {
+    if (document.getElementById('dataField').value) {
+        return document.getElementById('dataField').value;
+    } else {
+        return JSON.stringify({ 
+            program, 
+            "scheme_category": scheme.scheme_category, 
+            "themeList": module.theme.themeList 
+        });
+    }
+}
+
+// Фикс загрузки данных
 function loadUserData() {
     if (!token) return;
 
     fetch(`${API_URL}/user/data`, {
         headers: { 'Authorization': token }
     })
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('dataField').value = data.data;
-            document.getElementById('auth').style.display = 'none';
-            document.getElementById('userData').style.display = 'block';
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('dataField').value = data.data;
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('userData').style.display = 'block';
 
-            program = data.data.program;
-            scheme.scheme_category = data.data.scheme_category;
-            module.theme.themeList = data.data.themeList;
-            localStorage.setItem("program", data.data.program);
-            localStorage.setItem("scheme_category", data.data.scheme_category);
-            localStorage.setItem("themeList", data.data.themeList);
-            // document.getElementById('dataField').value = data.data;
+        program = data.data.program;
+        scheme.scheme_category = data.data.scheme_category;
+        module.theme.themeList = data.data.themeList;
 
-        })
-        .catch(console.error);
-}
-
-function getDataForSync () {
-    if (document.getElementById('dataField').value) {
-        data = JSON.stringify(document.getElementById('dataField').value);
-        return data;
-    }
-    else {
-        data = JSON.stringify({program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList});
-        return data;
-    }
+        localStorage.setItem("program", data.data.program);
+        localStorage.setItem("scheme_category", data.data.scheme_category);
+        localStorage.setItem("themeList", JSON.stringify(data.data.themeList)); // Фикс JSON
+    })
+    .catch(console.error);
 }
 
 function updateData() {
@@ -315,6 +321,7 @@ function logout() {
     document.getElementById('userData').style.display = 'none';
 }
 
-if (token) {
+if (localStorage.getItem('token')) {
+    token = localStorage.getItem('token');
     loadUserData();
 }
