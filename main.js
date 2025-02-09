@@ -1,3 +1,14 @@
+view['popup_sync'].addEventListener("click", function (element) {
+    if (element.target.classList == "button popup__button_exit") {
+        view.hide(view['popup_sync']);
+    }
+});
+
+view['popup__button_sync'].addEventListener("click", function () {
+    view.hide(view['popup_setting']);
+    view.show(view['popup_sync']);
+});
+
 // Повторяющиеся действия (события)
 view['popup__button_getter'].addEventListener("click", function () {
     // document.querySelector("#outputData").value = JSON.stringify(module.app.exportData(), 1, 4);

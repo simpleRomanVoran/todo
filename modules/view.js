@@ -17,6 +17,7 @@ let view = {
     'popup__button_exit': document.querySelectorAll('.popup__button_exit'),
     'popup__button_data': document.querySelector('.popup__button_data'),
     'popup__button_theme': document.querySelector('.popup__button_theme'),
+    'popup__button_sync': document.querySelector('.popup__button_sync'),
 
     'todo-footer__setting-button': document.querySelector('.todo-footer__setting-button'),
     'todo-footer__line-input': document.querySelector('.todo-footer__line-input'),
@@ -48,6 +49,7 @@ let view = {
     'popup_category': document.querySelector('.popup_category'),
     'popup_data': document.querySelector('.popup_data'),
     'popup_theme': document.querySelector('.popup_theme'),
+    'popup_sync': document.querySelector('.popup_sync'),
 
     // Скрывает все попапы
     popupAll() {
