@@ -288,7 +288,7 @@ function getDataForSync () {
         return data;
     }
     else {
-        data = {program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList}
+        data = JSON.stringify({program, "scheme_category": scheme.scheme_category, "themeList": module.theme.themeList});
         return data;
     }
 }
