@@ -242,18 +242,9 @@ function login() {
         if (data.token) {
             localStorage.setItem('token', data.token);
             console.log("Ответ сервера:", data);
-            
+
             token = data.token;
             loadUserData();
-
-            // Сохраняем данные правильно
-            program = data.data.program;
-            scheme.scheme_category = data.data.scheme_category;
-            module.theme.themeList = data.data.themeList;
-
-            localStorage.setItem("program", data.data.program);
-            localStorage.setItem("scheme_category", data.data.scheme_category);
-            localStorage.setItem("themeList", JSON.stringify(data.data.themeList)); // Фикс JSON
         } else {
             alert(data.message);
         }
