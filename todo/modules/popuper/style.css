@@ -1,0 +1,13 @@
+.popup {
+    display: block;
+}
+
+.popup_hide {
+    display: none;
+}
+
+.shop {
+    background-color: aquamarine;
+    padding: 16px;
+    margin: 16px;
+}

@@ -1,0 +1,880 @@
+@charset "UTF-8";
+
+/* ****** ОБНУЛЕНИЕ ****** */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/* конец обнуления */
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-ExtraLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("/font/Montserrat-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
+}
+
+/* главные объекты */
+* {}
+
+.body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-size: 0px;
+}
+
+/* абстрактные объекты */
+.container {
+  padding: 24px;
+}
+
+.line {
+  border-radius: 12px;
+}
+
+.input {
+  font: 16px "Montserrat";
+  font-weight: 400;
+  color: #181818;
+}
+
+.text {
+  font: 16px "Montserrat";
+  font-weight: 400;
+  color: #181818;
+}
+
+.image {
+  border-radius: 4px;
+}
+
+.select {
+  font: 16px "Montserrat";
+  font-weight: 400;
+  color: #181818;
+}
+
+.button {
+  font: 16px "Montserrat";
+  font-weight: 400;
+  color: #181818;
+}
+
+.hr {
+  width: 100%;
+  height: 1px;
+  margin: 0 0 12px 0;
+  background-color: #131313;
+}
+
+.heading {
+  text-transform: uppercase;
+  font: 24px "Montserrat";
+  font-weight: 800;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+.full {
+  height: 100%;
+  width: 100%;
+  border-radius: 12px 12px 12px 12px;
+}
+
+.none {
+  display: none;
+}
+
+.option {
+  font: 16px "Montserrat";
+  font-weight: 400;
+  color: #181818;
+}
+
+.important {
+  font-weight: 600;
+}
+
+.textarea {}
+
+.checkbox {
+  margin: 0 0 8px 0;
+}
+
+.label {
+  margin: 0 0 0 8px;
+}
+
+/* конкретные объекты */
+
+.todo-app {
+  display: grid;
+  grid-template-rows: 114px auto;
+  grid-template-areas: "todo-header"
+    "todo-list";
+  position: relative;
+
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+
+  overflow: auto;
+
+  background: rgb(138, 63, 189);
+  background: linear-gradient(164deg, rgba(138, 63, 189, 1) 0%, rgba(217, 87, 87, 1) 42%, rgba(219, 163, 90, 1) 64%, rgba(226, 212, 101, 1) 100%);
+}
+
+.todo-header {
+  grid-area: todo-header;
+}
+
+.todo-header__line {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  grid-template-areas: "todo-header__line-input todo-header__line-button";
+
+  height: 56px;
+  margin: 0 0 12px 0;
+
+  background-color: #fdfdfd;
+  box-shadow: 0px 0px 6px rgba(19, 19, 19, 0.4);
+}
+
+.todo-header__line-input {
+  grid-area: todo-header__line-input;
+  padding: 12px;
+  border-radius: 12px 0 0 12px;
+}
+
+.todo-header__line-button {
+  grid-area: todo-header__line-button;
+
+  border-radius: 0 12px 12px 0;
+
+  background-color: #E0DE62;
+
+  font-size: 48px;
+  font-weight: 900;
+  color: #fdfdfd;
+
+  transition: all 0.3s;
+}
+
+.todo-header__line-button:hover {
+  background-color: #c0be69;
+  transition: all 0.3s;
+}
+
+.todo-header__console {}
+
+.todo-header__console-text {
+  color: #fdfdfd;
+}
+
+
+.todo-list {
+  grid-area: todo-list;
+  pointer-events: none;
+}
+
+.todo-list__element {
+  display: grid;
+  grid-template-areas: "todo-list__inner"
+    "todo-list__progress";
+  margin: 0 0 24px 0;
+  pointer-events: auto;
+}
+
+.todo-list__inner {
+  display: grid;
+  grid-area: todo-list__inner;
+  grid-template-areas: "todo-list__checkbox todo-list__title todo-list__delete . todo-list__change . todo-list__important";
+
+  justify-content: left;
+  align-content: center;
+}
+
+.todo-list__important {
+  grid-area: todo-list__important;
+  margin: 0 12px 0 0;
+}
+
+.todo-list__important-image {
+  height: 16px;
+}
+
+.todo-list__change {
+  grid-area: todo-list__change;
+  margin: 0 12px 0 0;
+}
+
+.todo-list__change-image {
+  height: 16px;
+}
+
+.todo-list__checkbox {
+  grid-area: todo-list__checkbox;
+  margin: 0 12px 0 0;
+}
+
+.todo-list__checkbox-image {
+  height: 16px;
+}
+
+.todo-list__title {
+  grid-area: todo-list__title;
+  color: #fdfdfd;
+  margin: 0 12px 0 0;
+}
+
+.todo-list__delete {
+  grid-area: todo-list__delete;
+  margin: 0 12px 0 0;
+}
+
+.todo-list__delete-button {}
+
+.todo-list__delete-image {
+  height: 16px;
+}
+
+.todo-list__progress {
+  display: grid;
+  grid-area: todo-list__progress;
+  grid-template-columns: 8fr 1.5fr 0.5fr 0.1fr 0.5fr;
+  grid-template-areas: "todo-list__progress-line todo-list__value todo-list__minus . todo-list__plus";
+}
+
+.todo-list__progress-line {
+  grid-area: todo-list__progress-line;
+  height: 36px;
+  margin: 0 12px 0 0;
+  background: #fdfdfd;
+  overflow: hidden;
+}
+
+.todo-list__progress-line__inline {
+  position: relative;
+  height: 100%;
+  width: 0;
+  border-radius: 12px 0 0 12px;
+  background: rgb(100, 200, 77);
+  background: linear-gradient(125deg, rgba(100, 200, 77, 1) 0%, rgba(135, 212, 93, 1) 100%);
+}
+
+.todo-list__progress-line__text {
+  position: absolute;
+  left: 48.5%;
+  top: 23.5%;
+  color: #131313;
+}
+
+.todo-list__value {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-area: todo-list__value;
+
+  margin: 0 12px 0 0;
+
+  border-radius: 12px;
+
+  background: #fdfdfd;
+}
+
+.to-do-list__input {
+  padding: 8px;
+  border-radius: 12px 0 0 12px;
+  text-align: center;
+}
+
+.todo-list__button_value {
+  padding: 4px;
+  border-radius: 0 12px 12px 0;
+  background: #E0DE62;
+}
+
+.todo-list__minus {
+  grid-area: todo-list__minus;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #E0DE62;
+}
+
+.todo-list__minus-button {
+  width: 100%;
+  height: 100%;
+}
+
+.todo-list__plus {
+  grid-area: todo-list__plus;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #E0DE62;
+}
+
+.todo-list__plus-button {
+  width: 100%;
+  height: 100%;
+}
+
+.todo-footer {
+  display: grid;
+  grid-template-columns: 1fr 6fr 2fr 2fr 0.75fr 0.75fr;
+  grid-template-areas: "todo-footer__setting todo-footer__line todo-footer__information todo-footer__category todo-footer__delete todo-footer__done";
+  position: sticky;
+  bottom: 0;
+  height: 114px;
+}
+
+.todo-footer__setting {
+  margin: 0 8px 0 0;
+  border-radius: 12px;
+  background: #fdfdfd;
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__setting-button {
+  width: 100%;
+  height: 100%;
+}
+
+.todo-footer__line {
+  margin: 0 8px 0 0;
+  border-radius: 12px;
+  background: #fdfdfd;
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__line-input {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.todo-footer__information {
+  grid-area: todo-footer__information;
+  position: relative;
+  margin: 0 8px 0 0;
+  border-radius: 12px;
+  background: #fdfdfd;
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__information-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.todo-footer__category {
+  display: grid;
+  grid-template-areas: "todo-footer__category-select"
+    "todo-footer__category-button";
+  grid-area: todo-footer__category;
+  margin: 0 8px 0 0;
+  border-radius: 12px;
+  background: #fdfdfd;
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__category-select {
+  grid-area: todo-footer__category-select;
+  background: #fdfdfd;
+  border-radius: 12px 12px 0 0;
+  padding: 4px;
+}
+
+.todo-footer__category-button {
+  grid-area: todo-footer__category-button;
+  background: rgb(92, 194, 69);
+  background: linear-gradient(125deg, rgba(100, 200, 77, 1) 0%, rgba(135, 212, 93, 1) 100%);
+  border-radius: 0 0 12px 12px;
+  padding: 4px;
+}
+
+.todo-footer__delete {
+  grid-area: todo-footer__delete;
+  margin: 0 8px 0 0;
+  border-radius: 12px;
+  background: rgb(100, 200, 77);
+  background: linear-gradient(125deg, rgba(100, 200, 77, 1) 0%, rgba(135, 212, 93, 1) 100%);
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__delete-button {
+  width: 100%;
+  height: 100%;
+  font-weight: 200;
+  font-size: 32px;
+  color: #181818;
+}
+
+.todo-footer__done {
+  grid-area: todo-footer__done;
+  border-radius: 12px;
+  background: rgb(100, 200, 77);
+  background: linear-gradient(125deg, rgba(100, 200, 77, 1) 0%, rgba(135, 212, 93, 1) 100%);
+  box-shadow: 0px 0px 4px rgba(19, 19, 19, 0.3);
+}
+
+.todo-footer__done-button {
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(19, 19, 19, 0.45);
+}
+
+.popup__inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fdfdfd;
+  width: 90%;
+  height: 86%;
+  overflow: auto;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.popup_setting {}
+
+.popup__heading {
+  margin: 0 0 4px 0;
+}
+
+.popup__element {}
+
+.popup__text {
+  margin: 0 0 8px 0;
+}
+
+.popup__input {
+  width: 50%;
+  height: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgb(103, 207, 84);
+  background: #ffffff;
+  display: block;
+  margin: 0 0 8px 0;
+}
+
+.popup_data__textarea {
+  width: 100%;
+  height: 128px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgb(84, 193, 207);
+  background: #ffffff;
+  display: block;
+  margin: 0 0 8px 0;
+}
+
+.popup__button {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgb(80, 179, 62);
+  color: #fdfdfd;
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  box-shadow: 0 0 6px rgba(19, 19, 19, 0.5);
+  transition: 0.3s all;
+}
+
+.popup__button_clear {
+  padding: 12px;
+  border-radius: 8px;
+  background: #e46c7d;
+  ;
+  color: #fdfdfd;
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  box-shadow: 0 0 6px rgba(19, 19, 19, 0.5);
+}
+
+.popup__button_default {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgb(97, 193, 223);
+  color: #fdfdfd;
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  box-shadow: 0 0 6px rgba(19, 19, 19, 0.5);
+}
+
+.popup__button_exit {
+  position: absolute;
+  bottom: 0%;
+  right: 50%;
+  transform: translate(50%, 0);
+  padding: 12px;
+  border-radius: 8px;
+  background: #e46c7d;
+  color: #fdfdfd;
+}
+
+.popup_setting__navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 16px;
+  /* overflow: hidden;
+  overflow-y: scroll; */
+}
+
+.popup__button {}
+
+.popup__button_navigation {
+  display: block;
+  width: 100%;
+  box-shadow: 0px 0px 16px rgba(19, 19, 19, 0.2);
+  transition: all 0.4s;
+}
+
+.popup__button_navigation:hover {
+  display: block;
+  width: 100%;
+  box-shadow: 0px 0px 16px rgba(19, 19, 19, 0.5);
+  transition: all 0.2s;
+}
+
+#popup__button_main:hover {
+  background-color: rgb(185, 100, 75, 1);
+  transition: all 0.2s;
+}
+
+#popup__button_main {
+  background-color: rgb(185, 100, 75, 0.35);
+  transition: all 0.4s;
+}
+
+#popup__button_data {
+  background-color: rgb(75, 172, 185, 0.35);
+  transition: all 0.4s;
+}
+
+#popup__button_data:hover {
+  background-color: rgb(75, 172, 185, 1);
+  transition: all 0.2s;
+}
+
+.popup__button_getter {
+  background-color: #3eac6c;
+}
+
+.popup__button_setter {
+  background-color: #42a7b4;
+}
+
+.block {
+  display: block;
+  margin: 0 0 8px 0;
+}
+
+.popup__element_reset {
+  background: #ca5252;
+}
+
+.popup__element_red {
+  background: #ca5252;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: #131313;
+  margin: 32px 0 32px 0;
+}
+
+.articles h2 {
+  margin-bottom: 16px;
+}
+
+.updater_list {
+  background-color: #99c4c0;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.updater_list li {
+  font: 16px "Montserrat";
+}
+
+.updater_list li::before {
+  content: "•";
+  margin: 16px;
+}
+
+.multitasks_input {
+}
+
+.popup_textarea {
+  padding: 16px;
+  border-radius: 16px;
+  width: 99.4%;
+  height: 50%;
+  background-color: #ced2d3;
+  margin-bottom: 16px;
+}
+
+.popup__input_blue {
+  border: 1px solid rgb(46, 189, 233);
+}
+
+.popup__button_blue {
+  background-color: #42a7b4;
+}
+
+.text_green {
+  color: #3eac6c;
+}
+
+.text_red {
+  color: #ca5252;
+}
+
+.todo-footer__setting {
+  grid-area: todo-footer__setting;
+}
+
+.todo-footer__line {
+  grid-area: todo-footer__line;
+}
+
+.todo-footer__information {
+  grid-area: todo-footer__information;
+}
+
+.todo-footer__category {
+  grid-area: todo-footer__category;
+}
+
+.todo-footer__done {
+  grid-area: todo-footer__done;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@media (max-width: 720px) {
+
+  .todo-list__inner {
+    display: grid;
+    grid-area: todo-list__inner;
+    grid-template-areas: "todo-list__checkbox todo-list__title todo-list__delete . todo-list__change . todo-list__important";
+  
+    justify-content: left;
+    align-content: center;
+  }
+
+  .todo-list__element {
+    display: grid;
+    grid-template-areas: "todo-list__inner"
+    "todo-list__progress";
+    margin: 0 0 24px 0;
+  }
+
+  .todo-list__progress {
+    display: grid;
+    grid-area: todo-list__progress;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "todo-list__progress-line todo-list__progress-line todo-list__progress-line"
+    "todo-list__value todo-list__minus todo-list__plus";
+  }
+
+  .todo-list__progress-line {
+    margin-bottom: 16px;
+  }
+
+  .todo-list__value {
+    width: auto;
+  }
+
+  .todo-list__minus {
+    width: auto;
+  }
+
+  .todo-list__plus {
+    width: auto;
+  }
+
+  .to-do-list__input {
+    width: 100%;
+  }
+
+  .todo-footer__delete {
+    display: none;
+  }
+
+  .todo-footer {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "todo-footer__line todo-footer__line todo-footer__information"
+    "todo-footer__setting todo-footer__category todo-footer__done";
+    position: sticky;
+    bottom: 0;
+    height: 228px;
+  }
+  
+}
