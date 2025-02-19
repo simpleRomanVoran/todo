@@ -1,6 +1,3 @@
-// SYNC
-let token = localStorage.getItem('token'); // Берёт токен если есть
-
 // Работа с базой данных
 let db = {
     // Проверяет существование базы данных, возращает список: [true/false, база данных]
@@ -15,36 +12,18 @@ let db = {
 
     // Получение базы данных
     getData() {
-        if (token == null) {
-            return [
-                JSON.parse(localStorage.getItem('program')),
-                JSON.parse(localStorage.getItem('scheme_category')),
-                JSON.parse(localStorage.getItem('themeList'))
-            ];
-        }
-        else {
-            // аккаунт есть, берём с сервера
-            loadUserData()
-            return [
-                JSON.parse(localStorage.getItem('program')),
-                JSON.parse(localStorage.getItem('scheme_category')),
-                JSON.parse(localStorage.getItem('themeList'))
-            ];
-        }
+        return [
+            JSON.parse(localStorage.getItem('program')),
+            JSON.parse(localStorage.getItem('scheme_category')),
+            JSON.parse(localStorage.getItem('themeList'))
+        ];
     },
 
     // Сохранение базы данных
     setData() {
-        if (token == null) {
-            // аккаунта нет, берём из localStoragee
-            localStorage.setItem('program', JSON.stringify(program));
-            localStorage.setItem('scheme_category', JSON.stringify(scheme['category']));
-            localStorage.setItem('themeList', JSON.stringify(module.theme.themeList));
-        }
-        else {
-            // аккаунт есть, берём с сервера
-            updateData()
-        }
+        localStorage.setItem('program', JSON.stringify(program));
+        localStorage.setItem('scheme_category', JSON.stringify(scheme['category']));
+        localStorage.setItem('themeList', JSON.stringify(module.theme.themeList));
     },
 
     // Очистка базы данных

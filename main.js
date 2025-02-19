@@ -1,14 +1,3 @@
-view['popup_sync'].addEventListener("click", function (element) {
-    if (element.target.classList == "button popup__button_exit") {
-        view.hide(view['popup_sync']);
-    }
-});
-
-view['popup__button_sync'].addEventListener("click", function () {
-    view.hide(view['popup_setting']);
-    view.show(view['popup_sync']);
-});
-
 // Повторяющиеся действия (события)
 view['popup__button_getter'].addEventListener("click", function () {
     // document.querySelector("#outputData").value = JSON.stringify(module.app.exportData(), 1, 4);
@@ -159,10 +148,11 @@ document.querySelector(".popup__button_clearData").addEventListener("click", fun
 
 document.addEventListener ("click", function (e) {
 
-    // console.log (e);
-
-    eClassList = [...e.target.classList];
-    eID = [focused.originalTarget.id];
+    let eClassList = [...e.target.classList];
+    let eID = [];
+    if (focused) {
+        eID = [focused.target.id];
+    }
     // console.log (eClassList);
     
     if (eClassList.includes ("popup__button_update")) {
@@ -180,6 +170,10 @@ document.addEventListener ("click", function (e) {
                 <hr>
             `
         });
+    }
+
+    else if (eClassList.includes ("popup")) {
+        view.hide(e.target);
     }
 
     else if (eClassList.includes ("popup__button_exit")) {
@@ -208,113 +202,3 @@ document.addEventListener ("click", function (e) {
 })
 
 startProgram();
-
-// SYNC
-const API_URL = 'https://api.slavik00.ru/api';
-
-function register() {
-    const username = document.getElementById('regUsername').value;
-    const com = document.getElementById('regCom').value; // МЕТОД СВЯЗИ
-    const password = document.getElementById('regPassword').value;
-
-    fetch(`${API_URL}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, com })
-    })
-        .then(res => res.json())
-        .then(data => alert(data.message)) // updateData() Обновление данных нет, так как нет токена (при регистрации)
-        .catch(console.error);
-}
-
-// Обновленный login()
-function login() {
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-    fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.token) {
-            localStorage.setItem('token', data.token);
-            console.log("Ответ сервера:", data);
-
-            token = data.token;
-            loadUserData();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(console.error);
-}
-
-// Фикс getDataForSync()
-function getDataForSync() {
-    if (document.getElementById('dataField').value) {
-        return document.getElementById('dataField').value;
-    } else {
-        return JSON.stringify({ 
-            program, 
-            "scheme_category": scheme.scheme_category, 
-            "themeList": module.theme.themeList 
-        });
-    }
-}
-
-// Фикс загрузки данных
-function loadUserData() {
-    if (!token) return;
-
-    fetch(`${API_URL}/user/data`, {
-        headers: { 'Authorization': token }
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById('dataField').value = data;
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('userData').style.display = 'block';
-
-        console.log("Ответ сервера:", data);
-
-        program = data.program;
-        scheme.scheme_category = data.scheme_category;
-        module.theme.themeList = data.themeList;
-
-        localStorage.setItem("program", data.program);
-        localStorage.setItem("scheme_category", data.scheme_category);
-        localStorage.setItem("themeList", JSON.stringify(data.themeList)); // Фикс JSON
-    })
-    .catch(console.error);
-}
-
-function updateData() {
-    // const data = JSON.stringify(document.getElementById('dataField').value);
-
-    fetch(`${API_URL}/user/data`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify({ data: JSON.parse(getDataForSync ()) })
-    })
-        .then(res => res.json())
-        .then(data => alert(data.message, getDataForSync ()))
-        .catch(console.error);
-}
-
-function logout() {
-    localStorage.removeItem('token');
-    token = null;
-    document.getElementById('auth').style.display = 'block';
-    document.getElementById('userData').style.display = 'none';
-}
-
-if (localStorage.getItem('token')) {
-    token = localStorage.getItem('token');
-    loadUserData();
-}

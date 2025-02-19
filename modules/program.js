@@ -4,8 +4,8 @@
 
 // Блок отвечающий за самую основную информацию программы
 let program = {
-    'version': 13,
-    'full-version': "13 Выпуск",
+    'version': 14,
+    'full-version': "14 Выпуск",
     'index-category': 1,
     'current-category': '',
     // Блок отвечающий за сохранение опций программы

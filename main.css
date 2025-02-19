@@ -536,7 +536,7 @@ h6 {
 
 .todo-footer__category-button {
   grid-area: todo-footer__category-button;
-  background: rgb(100, 200, 77);
+  background: rgb(92, 194, 69);
   background: linear-gradient(125deg, rgba(100, 200, 77, 1) 0%, rgba(135, 212, 93, 1) 100%);
   border-radius: 0 0 12px 12px;
   padding: 4px;
@@ -631,7 +631,7 @@ h6 {
 .popup__button {
   padding: 12px;
   border-radius: 8px;
-  background: rgb(103, 207, 84);
+  background: rgb(80, 179, 62);
   color: #fdfdfd;
   display: inline-block;
   margin: 0 8px 8px 0;
@@ -780,6 +780,10 @@ hr {
   border: 1px solid rgb(46, 189, 233);
 }
 
+.popup__button_blue {
+  background-color: #42a7b4;
+}
+
 .text_green {
   color: #3eac6c;
 }
@@ -787,6 +791,27 @@ hr {
 .text_red {
   color: #ca5252;
 }
+
+.todo-footer__setting {
+  grid-area: todo-footer__setting;
+}
+
+.todo-footer__line {
+  grid-area: todo-footer__line;
+}
+
+.todo-footer__information {
+  grid-area: todo-footer__information;
+}
+
+.todo-footer__category {
+  grid-area: todo-footer__category;
+}
+
+.todo-footer__done {
+  grid-area: todo-footer__done;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -837,14 +862,16 @@ hr {
     width: 100%;
   }
 
-  
+  .todo-footer__delete {
+    display: none;
+  }
 
   .todo-footer {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 6fr 2fr;
-    grid-template-areas: "todo-footer__setting todo-footer__line todo-footer__information"
-    "todo-footer__category todo-footer__delete todo-footer__done";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "todo-footer__line todo-footer__line todo-footer__information"
+    "todo-footer__setting todo-footer__category todo-footer__done";
     position: sticky;
     bottom: 0;
     height: 228px;

@@ -15,6 +15,15 @@ let scheme = {
         }
     },
 
+    dublicateCategory(category, dublicateCategoryName) {
+        for (i in scheme['category']) {
+            if (scheme['category'][i].title == category) {
+                scheme['category'].push({ 'title': dublicateCategoryName, 'task': scheme['category'][i]['task'], 'index': program['index-category'], 'index-task': scheme['category'][i]['index-task'] });
+                program['index-category'] += 1;
+            }
+        }
+    },
+
     // Удаление категории
     deleteCategory(title) {
         for (i in scheme['category']) {

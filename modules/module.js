@@ -6,7 +6,7 @@ let module = {
         'title': 'темы',
         'description': 'Работа с дизайнами программы',
         'author': 'slavik',
-        'version': 13,
+        'version': 14,
 
         'themeList': {
             'dark': {
@@ -300,13 +300,14 @@ let module = {
         'title': 'основной',
         'description': 'Общий функционал приложения',
         'author': 'slavik',
-        'version': 13,
+        'version': 14,
 
         // После запуска программы
         fistStartProgram() {
             scheme.createCategory(program['setting']['main-category']);
             program['current-category'] = program['setting']['main-category'];
             module.theme.changeFullStyle(module.theme.themeList[program['setting']['theme-current']].style);
+            module.app.console(`Добро пожаловать! Запущена программа TODO-List, начинайте день с нового списка задач!`);
             db.setData();
         },
 
@@ -380,6 +381,20 @@ let module = {
             }
 
             view.show(view['popup_task']);
+        },
+
+        dublicateCategory () {
+
+            categoryName = program['current-category'];
+            newCategoryName = document.querySelector('#newCategoryName').value;
+
+            scheme.dublicateCategory(categoryName, newCategoryName); //  клонируем категорию
+
+            view.showAllTask(program['current-category']) // показываем все задачи текущей категории
+            db.setData(); // сохраняем базу данных
+            this.tick(); // тик приложения
+
+            this.console(`Создана новая категория на основе категории: ${categoryName}, её название:  ${newCategoryName}`); // лог
         },
 
         // изменяет задачу, через попап
