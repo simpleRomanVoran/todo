@@ -1,3 +1,8 @@
+let popup_footer = new Popup ("todo-footer", "display", "grid");
+let popup_footer_open = new Popup ("todo-footer_open", "display", "block");
+// popup_footer.hide ();
+popup_footer_open.hide (); 
+
 // Повторяющиеся действия (события)
 view['popup__button_getter'].addEventListener("click", function () {
     // document.querySelector("#outputData").value = JSON.stringify(module.app.exportData(), 1, 4);
@@ -149,14 +154,17 @@ document.querySelector(".popup__button_clearData").addEventListener("click", fun
 document.addEventListener ("click", function (e) {
 
     let eClassList = [...e.target.classList];
-    let eID = [];
+    let eID = e.target.getAttribute("id"); 
+    let eFocusedID = [];
     if (focused) {
-        eID = [focused.target.id];
+        eFocusedID = [focused.target.id];
     }
     // console.log (eClassList);
+    console.log (eID);
+
     
     if (eClassList.includes ("popup__button_update")) {
-        view.show(document.querySelector(".popup_setting"));
+        view.hide(document.querySelector(".popup_setting"));
         view.show(document.querySelector(".popup_update"));
     
         document.querySelector("#articles").innerHTML = "";
@@ -179,16 +187,24 @@ document.addEventListener ("click", function (e) {
     else if (eClassList.includes ("popup__button_exit")) {
         view.hide(document.querySelector(".popup_update"));
         view.hide(document.querySelector(".popup_multitasks"));
+        view.hide(document.querySelector(".popup_auto"));
 
         document.querySelector("#popup_status_task").innerHTML = "Статус задачи: <span class='text_red'>нет изменений</span>"
     }
 
     else if (eClassList.includes ("popup__button_multitasks")) {
-        view.show(document.querySelector(".popup_setting"));
+        view.hide(document.querySelector(".popup_setting"));
         view.show(document.querySelector(".popup_multitasks"));
     }
 
-    else if (eID.includes ("multitasks_button")) {
+    else if (eClassList.includes ("popup__button_auto")) {
+        view.hide(document.querySelector(".popup_setting"));
+        view.show(document.querySelector(".popup_auto"));
+
+        
+    }
+
+    else if (eFocusedID.includes ("multitasks_button")) {
         console.log ("multi")
         separator = "\n";
         text = multitasks_input.value;
@@ -197,6 +213,16 @@ document.addEventListener ("click", function (e) {
             module.app.createMultitasks(element);
         })
         console.log (tasks)
+    }
+
+    else if (eID?.includes ("todo-footer_open")) {
+        popup_footer.show ();
+        popup_footer_open.hide (); 
+    }
+
+    else if (eID?.includes ("todo-footer_close")) {
+        popup_footer.hide ();
+        popup_footer_open.show ();
     }
 
 })

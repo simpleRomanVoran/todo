@@ -15,7 +15,8 @@ let db = {
         return [
             JSON.parse(localStorage.getItem('program')),
             JSON.parse(localStorage.getItem('scheme_category')),
-            JSON.parse(localStorage.getItem('themeList'))
+            JSON.parse(localStorage.getItem('themeList')),
+            JSON.parse(localStorage.getItem('scheme_auto'))
         ];
     },
 
@@ -23,13 +24,16 @@ let db = {
     setData() {
         localStorage.setItem('program', JSON.stringify(program));
         localStorage.setItem('scheme_category', JSON.stringify(scheme['category']));
+        localStorage.setItem('scheme_auto', JSON.stringify(scheme['auto']));
         localStorage.setItem('themeList', JSON.stringify(module.theme.themeList));
     },
 
     // Очистка базы данных
     clearData() {
+        delete localStorage['scheme_auto'];
         delete localStorage['program'];
         delete localStorage['scheme_category']
+        delete localStorage['themeList']
     },
 
     // сохраняет базу данных, по аргументу

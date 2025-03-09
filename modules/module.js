@@ -6,7 +6,7 @@ let module = {
         'title': 'темы',
         'description': 'Работа с дизайнами программы',
         'author': 'slavik',
-        'version': 14,
+        'version': 15,
 
         'themeList': {
             'dark': {
@@ -286,7 +286,7 @@ let module = {
             delete this.themeList[themeID];
 
             module.app.tick()
-            db.setData()
+            db.setDatas()
             this.viewThemeList()
         },
 
@@ -300,7 +300,7 @@ let module = {
         'title': 'основной',
         'description': 'Общий функционал приложения',
         'author': 'slavik',
-        'version': 14,
+        'version': 15,
 
         // После запуска программы
         fistStartProgram() {
@@ -711,6 +711,7 @@ let module = {
             program = db.getData()[0];
             scheme.category = db.getData()[1];
             module.theme.themeList = db.getData()[2];
+            scheme.auto = db.getData()[3];
         },
 
         // импорт данных, через попап

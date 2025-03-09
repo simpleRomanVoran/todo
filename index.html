@@ -31,7 +31,7 @@
 
         </div>
 
-        <div class="container todo-footer">
+        <div class="container todo-footer" id="todo-footer">
             <div class="todo-footer__setting">
                 <button class="button todo-footer__setting-button">меню</button>
             </div>
@@ -49,12 +49,19 @@
                     настройка категории
                 </button>
             </div>
+            <div class="todo-footer_close">
+                <button class="button todo-footer__done-button todo-footer__blue" id="todo-footer_close">скрыть</button>
+            </div>
             <div class="todo-footer__delete">
                 <button class="button todo-footer__delete-button" onclick="module.app.deleteCategory ()">x</button>
             </div>
             <div class="todo-footer__done">
                 <button class="button todo-footer__done-button" onclick="module.app.selectCategory()">готово</button>
             </div>
+        </div>
+
+        <div class="button todo-footer_open" id="todo-footer_open">
+            ↑
         </div>
     </div>
 
@@ -72,7 +79,7 @@
             <p class="text popup__text">Поле ввода основной категории:</p>
             <input type="text" class="input popup__input" placeholder="" id="program_main-category">
             <p class="text popup__text">Поле ввода темы:</p>
-            <input type="text" class="input popup__input" placeholder="dark / light / miniLight" id="program_theme">
+            <input type="text" class="input popup__input" placeholder="dark / light" id="program_theme">
 
 
             <button class="button popup__button popup__element" onclick="module.app.changeSetting ()">сохранить</button>
@@ -85,6 +92,7 @@
                 <button class="button popup__button popup__button_navigation popup__button_theme">Дизайн и темы</button>
                 <button class="button popup__button popup__button_navigation popup__button_update">Обновление</button>
                 <button class="button popup__button popup__button_navigation popup__button_multitasks">Многозадачность</button>
+                <button class="button popup__button popup__button_navigation popup__button_auto">Автоматизация</button>
             </div>
         </div>
         <button class="button popup__button_exit">ВЫЙТИ</button>
@@ -255,8 +263,51 @@
         <button class="button popup__button_exit">ВЫЙТИ</button>
     </div>
 
+    <!-- попап: автоматизация -->
+    <div class="popup popup_auto">
+        <div class="popup__inner">
+            <h2 class="heading popup__heading">автоматизация</h2>
+
+            <div class="text popup__text">Автоматизация категории:</div>
+            <select class="select popup__select_category">
+                <option value="1">1</option>
+            </select>
+
+            <div class="text popup__text">Режим:</div>
+            <select class="select popup__select_mode">
+                <option value="1">1</option>
+            </select>
+
+            <div class="text popup__text">Индекс:</div>
+            <input class="input popup__input" id="auto_index" placeholder="Индекс">
+
+            <button class="button popup__button">Добавить</button>
+            <button class="button popup__button">Удалить</button>
+            <div class="text popup__text">Список автоматизаций:</div>
+            <ul class="popup__list" id="auto_list">
+                <li class="text popup__element">byt</li>
+                <li class="text popup__element">123</li>
+                <li class="text popup__element">3wrs</li>
+            </ul>
+
+
+            <!-- выбор категории -->
+            <!-- режим авто-создания -->
+            <!-- индекс автоматизации -->
+            <!-- добавление автоматизации -->
+            <!-- удаление автоматизации -->
+            <!-- список автоматизаций -->
+        </div>
+        
+        <button class="button popup__button_exit">ВЫЙТИ</button>
+    </div>
+
     <style id="style"></style>
 
+    <!-- MomentJS -->
+    <script src="modules/moment.js"></script>
+    <!-- Popuper -->
+     <script src="modules/popuper.js"></script>
     <!-- Настройки программы -->
     <script src="modules/program.js"></script>
     <!-- База данных -->

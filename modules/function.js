@@ -18,8 +18,8 @@ function startProgram() {
 // Перезагрузка программы
 function restartProgram() {
     db.clearData();
-    program['version'] = 14;
-    program['full-version'] = "14 Выпуск DEV";
+    program['version'] = 15;
+    program['full-version'] = "15 Выпуск DEV";
     program['index-category'] = 1;
     program['current-category'] = '';
 }
